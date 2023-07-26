@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_order_kanban" model="ir.ui.view">
+        <field name="name">pos.order.kanban</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="lines">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                 <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            <t t-foreach="record.lines" t-as="l">
+                                                <field name="l.product_id.name"/>
+                                                <field name="l.qty"/>
+                                            </t>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </field>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_check_pos_orders" model="ir.actions.act_window">
+        <field name="name">Check PoS Orders</field>
+        <field name="res_model">pos.order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban</field>
+    </record>
+
+    <menuitem id="menu_check_pos_orders"
+              name="Check PoS Orders"
+              parent="stock.menu_stock_root"
+              action ="action_check_pos_orders"
+              sequence="96"/>
+
+</odoo>
