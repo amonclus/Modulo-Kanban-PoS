@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'stock','point_of_sale'],
+    'depends': ['base', 'stock','point_of_sale','sync_one2many_kanban'],
 
     # always loaded
     'data': [
